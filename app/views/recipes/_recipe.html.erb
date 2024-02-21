@@ -1,5 +1,12 @@
 <div id="<%= dom_id recipe %>">
   <p class="my-5">
+    <% if recipe.image.present? %>
+      <%= image_tag recipe.image, class: "w-full rounded" %>
+    <% else %>
+      <%= image_tag("https://via.placeholder.com/300") %>
+    <% end %>
+  </p>
+  <p class="my-5">
     <strong class="block font-medium mb-1">Title:</strong>
     <%= recipe.title %>
   </p>
