@@ -1,36 +1,34 @@
 <div id="<%= dom_id recipe %>">
-  <p class="my-5">
+  <div class="card w-96 bg-base-100 shadow-xl">
+  <figure>
     <% if recipe.image.present? %>
       <%= image_tag recipe.image, class: "w-full rounded" %>
     <% else %>
       <%= image_tag("https://via.placeholder.com/300") %>
     <% end %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Title:</strong>
-    <%= recipe.title %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
-    <%= recipe.description %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Preparation time:</strong>
-    <%= recipe.preparation_time %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Difficulty level:</strong>
-    <%= recipe.difficulty_level %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Portion:</strong>
-    <%= recipe.portion %>
-  </p>
-
+  </figure>
+  <div class="card-body items-center text-center">
+    <h2 class="card-title"><%=recipe.title %></h2>
+    <p><%= recipe.description %></p>
+    <div class=" items-center flex space-around no-wrap flex-start">
+      <div class="details mx-4">
+        <i class="fa-regular fa-clock fa-xl"></i>
+        <br>
+        <div class="mt-2"><%= recipe.preparation_time %>'</div>
+      </div>
+      <div class="details mx-4">
+        <i class="fa-solid fa-kitchen-set fa-xl"></i>
+        <br>
+        <div class="mt-2"><%= recipe.difficulty_level%></div>
+      </div>
+      <div class="details mx-4">
+        <i class="fa-sharp fa-solid fa-users fa-xl"></i>
+        <br>
+        <div class="mt-2"><%= recipe.portion %></div>
+      </div>
+    </div>
+  </div>
+</div>
   <% if action_name != "show" %>
     <%= link_to "Show this recipe", recipe, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to 'Edit this recipe', edit_recipe_path(recipe), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
