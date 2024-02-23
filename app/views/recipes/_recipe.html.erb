@@ -1,33 +1,33 @@
 <div id="<%= dom_id recipe %>">
-  <div class="card w-96 bg-base-100 shadow-xl">
-  <figure>
-    <% if recipe.image.present? %>
-      <%= image_tag recipe.image, class: "w-full rounded" %>
-    <% else %>
-      <%= image_tag("https://via.placeholder.com/300") %>
-    <% end %>
-  </figure>
-  <div class="card-body items-center text-center">
-    <h2 class="card-title"><%=recipe.title %></h2>
-    <p><%= recipe.description %></p>
-    <div class=" items-center flex space-around no-wrap flex-start">
-      <div class="details mx-4">
-        <i class="fa-regular fa-clock fa-xl"></i>
-        <br>
-        <div class="mt-2"><%= recipe.preparation_time %>'</div>
-      </div>
-      <div class="details mx-4">
-        <i class="fa-solid fa-kitchen-set fa-xl"></i>
-        <br>
-        <div class="mt-2"><%= recipe.difficulty_level%></div>
-      </div>
-      <div class="details mx-4">
-        <i class="fa-sharp fa-solid fa-users fa-xl"></i>
-        <br>
-        <div class="mt-2"><%= recipe.portion %></div>
+  <%= link_to recipe do %>
+    <div class="card w-96 bg-base-100 shadow-xl">
+      <% if recipe.image.present? %>
+        <%= image_tag recipe.image, class: "w-full rounded" %>
+      <% else %>
+        <%= image_tag("https://via.placeholder.com/300") %>
+      <% end %>
+    <div class="card-body items-center text-center">
+      <h2 class="card-title"><%=recipe.title %></h2>
+      <p><%= recipe.description %></p>
+      <div class=" items-center flex space-around no-wrap flex-start">
+        <div class="details mx-4">
+          <i class="fa-regular fa-clock fa-xl"></i>
+          <br>
+          <div class="mt-2"><%= recipe.preparation_time %>'</div>
+        </div>
+        <div class="details mx-4">
+          <i class="fa-solid fa-kitchen-set fa-xl"></i>
+          <br>
+          <div class="mt-2"><%= recipe.difficulty_level%></div>
+        </div>
+        <div class="details mx-4">
+          <i class="fa-sharp fa-solid fa-users fa-xl"></i>
+          <br>
+          <div class="mt-2"><%= recipe.portion %></div>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>
   <% if action_name != "show" %>
     <%= link_to "Show this recipe", recipe, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
