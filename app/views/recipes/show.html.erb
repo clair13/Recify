@@ -1,5 +1,5 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
+<div class="w-full mx-auto">
+  <div class="w-full mx-auto">
 
 
     <%= render @recipe %>
@@ -10,4 +10,37 @@
     </div>
     <%= link_to 'Back to recipes', recipes_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
+  <div>
+        <img src="https://akispetretzikis.com/media/cache/recipe-pc-thumb/recipes/glykopatates-pancakes-me-mavri-sokolata-6041.jpg" alt="Pancakes Glykopatatas" class="w-full rounded-lg">
+  </div>
+
+  <div class= "grid grid-cols-2 md:grid-cols-2 gap-8">
+    <div>
+      <h2 class="text-2xl font-semibold mb-4">Ingredients</h2>
+      <ul class="list-disc list-inside">
+          <li>2 eggs</li>
+          <li>250g sweet potatoes, boiled and mashed</li>
+          <li>100g all-purpose flour</li>
+          <li>30g sugar</li>
+          <li>1 tsp baking powder</li>
+          <li>1/2 tsp ground cinnamon</li>
+          <li>Pinch of salt</li>
+          <li>150ml milk</li>
+          <li>Butter or oil for frying</li>
+      </ul>
+    </div>
+    <div>
+        <h2 class="text-2xl font-semibold mt-8 mb-4">Instructions</h2>
+         <ol class="steps steps-vertical">
+            <% @steps.each do |step| %>
+              <li class="step step-primary"><%= step.description %></li>
+            <% end %>
+        </ol>
+    </div>
 </div>
+
+
+
+
+    
+
