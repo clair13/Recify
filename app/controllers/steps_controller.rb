@@ -10,45 +10,28 @@ class StepsController < ApplicationController
   end
 
   def new
-    @step = @recipe.steps.new
+    @step = @recipe.steps.build
   end
 
   def edit
   end
 
   def create
-    @step = @recipe.steps.new(step_params)
-
-    respond_to do |format|
-      if @step.save
-        format.html { redirect_to step_url(@step), notice: "Step was successfully created." }
-        format.json { render :show, status: :created, location: @step }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @step.errors, status: :unprocessable_entity }
-      end
-    end
+    @step = @recipe.steps.create! step_params
+    
+    redirect_to recipe_url(@recipe), notice: "Step was successfully created."
   end
 
   def update
-    respond_to do |format|
-      if @step.update(step_params)
-        format.html { redirect_to recipe_steps_path(@recipe), notice: "Step was successfully updated." }
-        format.json { render :show, status: :ok, location: @step }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @step.errors, status: :unprocessable_entity }
-      end
-    end
+    @step.update! step_params
+
+    redirect_to recipe_url(@recipe), notice: "Step was successfully updated."
   end
 
   def destroy
-    @step.destroy
+    @step.destroy!
 
-    respond_to do |format|
-      format.html { redirect_to recipe_steps_path(@recipe), notice: "Step was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to recipe_url(@recipe), notice: "Step was successfully destroyed."
   end
 
   private
@@ -62,6 +45,6 @@ class StepsController < ApplicationController
     end
 
     def step_params
-      params.require(:step).permit(:description)
+      params.require(:step).permit(:description , :recipe_id)
     end
 end

@@ -4,6 +4,8 @@
 
     <%= render @recipe %>
 
+    <h3><%= @recipe.description %></h3>
+
     <%= link_to 'Edit this recipe', edit_recipe_path(@recipe), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
       <%= button_to 'Destroy this recipe', recipe_path(@recipe), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
@@ -12,6 +14,10 @@
   </div>
   <div>
         <img src="https://akispetretzikis.com/media/cache/recipe-pc-thumb/recipes/glykopatates-pancakes-me-mavri-sokolata-6041.jpg" alt="Pancakes Glykopatatas" class="w-full rounded-lg">
+  </div>
+  
+  <div>
+    <%= render "recipes/add_step_form", recipe: @recipe %>
   </div>
 
   <div class= "grid grid-cols-2 md:grid-cols-2 gap-8">

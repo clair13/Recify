@@ -1,0 +1,11 @@
+<%= form_with model: [recipe, recipe.steps.new] do |form| %>
+  <div class="field is-grouped">
+    <div class="control">
+      <%= form.text_field :description, placeholder: "Add new step...", class: "input", autofocus: true %>
+    </div>
+
+    <div class="control">
+      <%= form.submit "Create", class: "button is-info" %>
+    </div>
+  </div>
+<% end %>
