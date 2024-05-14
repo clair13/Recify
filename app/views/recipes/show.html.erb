@@ -1,3 +1,5 @@
+<%= turbo_stream_from @recipe %>
+
 <div class="w-full mx-auto">
   <div class="w-full mx-auto">
 
@@ -41,7 +43,7 @@
             <% @steps.each do |step| %>
               <li class="step step-primary"><%= step.description %></li>
             <% end %>
-        </ol>
+         </ol>
     </div>
 </div>
 
