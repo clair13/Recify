@@ -22,12 +22,17 @@
     <%= render "recipes/add_step_form", recipe: @recipe %>
   </div>
 
+  <div>
+    <%= render "recipes/add_ingredient_form", recipe: @recipe %>
+  </div>
+
   <div class= "grid grid-cols-2 md:grid-cols-2 gap-8">
     <div>
       <h2 class="text-2xl font-semibold mb-4">Ingredients</h2>
       <ul class="list-disc list-inside">
         <% @ingredients.each do |ingredient| %>
-          <li><%= ingredient.quantity %></li>
+          <li><%= ingredient.quantity %> <%= ingredient.unit %> <%= ingredient.name %></li>
+        <% end %>
       </ul>
     </div>
     <div>
@@ -39,9 +44,3 @@
          </ol>
     </div>
 </div>
-
-
-
-
-    
-

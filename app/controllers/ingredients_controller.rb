@@ -10,45 +10,29 @@ class IngredientsController < ApplicationController
   end
 
   def new
-    @ingredient = @recipe.ingredients.new
+    @ingredient = @recipe.ingredients.build
   end
 
   def edit
   end
 
   def create
-    @ingredient = @recipe.ingredients.new(ingredient_params)
+    @ingredient = @recipe.ingredients.create! ingredient_params
 
-    respond_to do |format|
-      if @ingredient.save
-        format.html { redirect_to ingredient_url(@ingredient), notice: "Ingredient was successfully created." }
-        format.json { render :show, status: :created, location: @ingredient }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @ingredient.errors, status: :unprocessable_entity }
-      end
-    end
+    redirect_to recipe_url(@recipe), notice: "Ingredient was successfully created."
   end
 
   def update
-    respond_to do |format|
-      if @ingredient.update(ingredient_params)
-        format.html { redirect_to recipe_ingredient_path(@recipe), notice: "Ingredient was successfully updated." }
-        format.json { render :show, status: :ok, location: @ingredient }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @ingredient.errors, status: :unprocessable_entity }
-      end
-    end
+
+    @ingredient.update! ingredient_params
+
+    redirect_to recipe_url(@recipe), notice: "Ingredient was successfully updated."
   end
 
   def destroy
-    @ingredient.destroy
+    @ingredient.destroy!
 
-    respond_to do |format|
-      format.html { redirect_to ingredients_url, notice: "Ingredient was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to recipe_url(@recipe), notice: "Ingredient was successfully destroyed."
   end
 
   private

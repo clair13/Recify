@@ -1,0 +1,19 @@
+<%= form_with model: [recipe, recipe.ingredients.new] do |form| %>
+  <div class="field is-grouped">
+    <div class="control">
+      <%= form.text_field :name, placeholder: "Add new Ingredient...", class: "input", autofocus: true %>
+    </div>
+
+    <div class="control">
+      <%= form.text_field :unit, placeholder: "Add Unit...", class: "input", autofocus: true %>
+    </div>
+
+    <div class="control">
+      <%= form.text_field :quantity, placeholder: "Add Quantity...", class: "input", autofocus: true %>
+    </div>
+
+    <div class="control">
+      <%= form.submit "Create", class: "btn btn-active btn-primary" %>
+    </div>
+  </div>
+<% end %>
