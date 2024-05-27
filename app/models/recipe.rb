@@ -1,5 +1,6 @@
 class Recipe < ApplicationRecord
   has_many :steps, dependent: :destroy
+  has_many :ingredients, dependent: :destroy
 
   broadcasts_refreshes
   
