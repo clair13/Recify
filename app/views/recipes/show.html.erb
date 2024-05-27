@@ -26,15 +26,8 @@
     <div>
       <h2 class="text-2xl font-semibold mb-4">Ingredients</h2>
       <ul class="list-disc list-inside">
-          <li>2 eggs</li>
-          <li>250g sweet potatoes, boiled and mashed</li>
-          <li>100g all-purpose flour</li>
-          <li>30g sugar</li>
-          <li>1 tsp baking powder</li>
-          <li>1/2 tsp ground cinnamon</li>
-          <li>Pinch of salt</li>
-          <li>150ml milk</li>
-          <li>Butter or oil for frying</li>
+        <% @ingredients.each do |ingredient| %>
+          <li><%= ingredient.quantity %></li>
       </ul>
     </div>
     <div>

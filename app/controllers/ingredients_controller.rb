@@ -1,27 +1,23 @@
 class IngredientsController < ApplicationController
+  before_action :set_recipe
   before_action :set_ingredient, only: %i[ show edit update destroy ]
 
-  # GET /ingredients or /ingredients.json
   def index
-    @ingredients = Ingredient.all
+    @ingredients = @recipe.ingredients
   end
 
-  # GET /ingredients/1 or /ingredients/1.json
   def show
   end
 
-  # GET /ingredients/new
   def new
-    @ingredient = Ingredient.new
+    @ingredient = @recipe.ingredients.new
   end
 
-  # GET /ingredients/1/edit
   def edit
   end
 
-  # POST /ingredients or /ingredients.json
   def create
-    @ingredient = Ingredient.new(ingredient_params)
+    @ingredient = @recipe.ingredients.new(ingredient_params)
 
     respond_to do |format|
       if @ingredient.save
@@ -34,11 +30,10 @@ class IngredientsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /ingredients/1 or /ingredients/1.json
   def update
     respond_to do |format|
       if @ingredient.update(ingredient_params)
-        format.html { redirect_to ingredient_url(@ingredient), notice: "Ingredient was successfully updated." }
+        format.html { redirect_to recipe_ingredient_path(@recipe), notice: "Ingredient was successfully updated." }
         format.json { render :show, status: :ok, location: @ingredient }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -47,7 +42,6 @@ class IngredientsController < ApplicationController
     end
   end
 
-  # DELETE /ingredients/1 or /ingredients/1.json
   def destroy
     @ingredient.destroy
 
@@ -58,12 +52,14 @@ class IngredientsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    def set_recipe
+      @recipe = Recipe.find(params[:recipe_id])
+    end
+
     def set_ingredient
       @ingredient = Ingredient.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def ingredient_params
       params.require(:ingredient).permit(:name, :quantity, :unit, :recipe_id)
     end
