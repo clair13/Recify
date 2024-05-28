@@ -1,6 +1,6 @@
 class StepsController < ApplicationController
   before_action :set_recipe
-  before_action :set_step, only: %i[ show edit update destroy ]
+  before_action :set_step, only: %i[show edit update destroy]
 
   def index
     @steps = @recipe.steps
@@ -18,7 +18,7 @@ class StepsController < ApplicationController
 
   def create
     @step = @recipe.steps.create! step_params
-    
+
     redirect_to recipe_url(@recipe), notice: "Step was successfully created."
   end
 
@@ -36,15 +36,15 @@ class StepsController < ApplicationController
 
   private
 
-    def set_recipe
-      @recipe= Recipe.find(params[:recipe_id])
-    end
+  def set_recipe
+    @recipe = Recipe.find(params[:recipe_id])
+  end
 
-    def set_step
-      @step = @recipe.steps.find(params[:id])
-    end
+  def set_step
+    @step = @recipe.steps.find(params[:id])
+  end
 
-    def step_params
-      params.require(:step).permit(:description , :recipe_id)
-    end
+  def step_params
+    params.require(:step).permit(:description, :recipe_id)
+  end
 end

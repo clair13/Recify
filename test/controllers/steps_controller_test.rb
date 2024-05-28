@@ -17,7 +17,7 @@ class StepsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create step" do
     assert_difference("Step.count") do
-      post steps_url, params: { step: { description: @step.description } }
+      post steps_url, params: {step: {description: @step.description}}
     end
 
     assert_redirected_to step_url(Step.last)
@@ -34,7 +34,7 @@ class StepsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update step" do
-    patch step_url(@step), params: { step: { description: @step.description } }
+    patch step_url(@step), params: {step: {description: @step.description}}
     assert_redirected_to step_url(@step)
   end
 

@@ -1,6 +1,6 @@
 class IngredientsController < ApplicationController
   before_action :set_recipe
-  before_action :set_ingredient, only: %i[ show edit update destroy ]
+  before_action :set_ingredient, only: %i[show edit update destroy]
 
   def index
     @ingredients = @recipe.ingredients
@@ -23,7 +23,6 @@ class IngredientsController < ApplicationController
   end
 
   def update
-
     @ingredient.update! ingredient_params
 
     redirect_to recipe_url(@recipe), notice: "Ingredient was successfully updated."
@@ -36,15 +35,16 @@ class IngredientsController < ApplicationController
   end
 
   private
-    def set_recipe
-      @recipe = Recipe.find(params[:recipe_id])
-    end
 
-    def set_ingredient
-      @ingredient = Ingredient.find(params[:id])
-    end
+  def set_recipe
+    @recipe = Recipe.find(params[:recipe_id])
+  end
 
-    def ingredient_params
-      params.require(:ingredient).permit(:name, :quantity, :unit, :recipe_id)
-    end
+  def set_ingredient
+    @ingredient = Ingredient.find(params[:id])
+  end
+
+  def ingredient_params
+    params.require(:ingredient).permit(:name, :quantity, :unit, :recipe_id)
+  end
 end
