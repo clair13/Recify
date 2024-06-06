@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
   devise_for :users
-  devise_for :admins
+  devise_for :admins, skip: [:registrations]
   
   resources :recipes do
     resources :steps
     resources :ingredients
   end
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
+  authenticated :admin_user do
+    root to: "admin#index", as: :admin_root
+  end
+
   root "recipes#index"
+
+  get "admin" => "admin#index"
 end
