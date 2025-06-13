@@ -1,6 +1,23 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show edit update destroy]
 
+  def search
+    if params[:query].present?
+      search_results = Recipe.where('title ILIKE ?', "%#{params[:query]}%")
+      @recipes = search_results.any? ? search_results : Recipe.all
+      @no_results_fallback = search_results.empty?
+    else
+      # If no query, show all recipes
+      @recipes = Recipe.all
+      @no_search_results_fallback = false
+    end
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { render :index }
+    end
+  end
+
   def index
     @recipes = Recipe.all
   end

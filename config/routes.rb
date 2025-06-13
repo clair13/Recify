@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   devise_for :admins, skip: [:registrations]
   
   resources :recipes do
+    collection do
+      get :search
+    end
     resources :steps
     resources :ingredients
   end
